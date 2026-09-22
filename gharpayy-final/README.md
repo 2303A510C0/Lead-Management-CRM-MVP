@@ -113,18 +113,7 @@ Node.js HTTP Server (backend/server.js)
         +--> backend/data/booking-flows.json
 ```
 
-## 2-minute interview demo
-
-1. Open **Leads** and select a Hot lead.
-2. Click **M-POWER CALL**, start/end the call, choose **Interested**, add notes and a follow-up date, then save.
-3. Show that the lead stage/next action changed because the call was written back to the backend.
-4. Refresh the browser and show the change is still there.
-5. Open **Movement CARE**, click **Start Today**, enter a result promise + target, and show the prioritized 30-lead queue.
-6. Click **Take Next Lead**, save action/result/notes, repeat for a few leads, and show progress + the queue write-back.
-7. Click **Close Day** and show the WhatsApp-ready summary; **Open WhatsApp** demonstrates the handoff.
-8. Open **Booking Flow Split**, choose a lead, answer the decision questions, set the next step/deadline, write a closing promise, save it, then refresh to show persistence.
-9. Add a new lead and refresh again to demonstrate backend persistence.
-10. Finish by showing **NEXT-ACTION AI** and **LEAKAGE GUARD** as the next product layer.
+ 
 
 ## Deployment
 
