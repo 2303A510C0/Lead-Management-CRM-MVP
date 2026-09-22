@@ -71,19 +71,6 @@ The same `lead.id` is used across the APIs, so operator actions remain connected
 - Local run: `START.bat` or `node backend/server.js`
 - External dependencies: none required
 
-## Interview demo script
-
-1. Open `http://localhost:3000`.
-2. Go to **Leads** and open the top Hot lead.
-3. Run **M-POWER CALL** and save an `Interested` outcome with a follow-up date.
-4. Refresh the browser to show the write-back persisted.
-5. Open **Movement CARE**, start today with a promise such as `Work 30 leads and create 2 qualified opportunities`.
-6. Use **Take Next Lead**, save one or two outcomes, and point out that the next unfinished lead loads automatically.
-7. Close the day and show the WhatsApp-ready update.
-8. Open **Booking Flow Split**, capture answers, set `Confirm booking`, add a deadline and closing promise, then save as `Ready to Book`.
-9. Refresh and show the saved booking state on the same lead.
-10. Finish with **NEXT-ACTION AI** and **LEAKAGE GUARD** as the two additional product ideas.
-
 ## Scope note
 
 Real phone calling and real WhatsApp messaging are intentionally represented as MVP operator flows and handoff points. This keeps the assessment honest while demonstrating the backend write-back and end-to-end product workflow.
