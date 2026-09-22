@@ -1,0 +1,77 @@
+{
+  "date": "2026-09-22",
+  "status": "active",
+  "promise": "Work 30 leads and create 2 qualified opportunities",
+  "resultTarget": 2,
+  "queue": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    24,
+    25,
+    26,
+    28,
+    30,
+    21,
+    27,
+    29,
+    22,
+    23
+  ],
+  "activeIndex": 4,
+  "completed": [
+    {
+      "leadId": 1,
+      "name": "Aakash B.",
+      "action": "WhatsApp",
+      "result": "Not Interested",
+      "note": "NOT INTERESTED",
+      "completedAt": "2026-09-22T14:03:01.127Z"
+    },
+    {
+      "leadId": 2,
+      "name": "Sneha P.",
+      "action": "Qualification",
+      "result": "Interested",
+      "note": "INTEESTED",
+      "completedAt": "2026-09-22T14:03:55.230Z"
+    },
+    {
+      "leadId": 3,
+      "name": "Ritika G.",
+      "action": "Call",
+      "result": "Qualified",
+      "note": "",
+      "completedAt": "2026-09-22T14:04:31.356Z"
+    },
+    {
+      "leadId": 4,
+      "name": "Sanjay P.",
+      "action": "Follow-up",
+      "result": "Qualified",
+      "note": "YES",
+      "completedAt": "2026-09-22T14:04:42.246Z"
+    }
+  ],
+  "qualified": 2,
+  "startedAt": "2026-09-22T14:02:26.767Z",
+  "closedAt": null,
+  "summary": ""
+}

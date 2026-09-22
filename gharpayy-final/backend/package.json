@@ -1,0 +1,10 @@
+{
+  "name": "gharpayy-leadops-backend",
+  "version": "1.0.0",
+  "description": "Full-stack backend for Gharpayy LeadOps assessment MVP",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  }
+}

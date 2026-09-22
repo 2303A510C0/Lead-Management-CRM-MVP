@@ -1,0 +1,46 @@
+[
+  {
+    "id": 1,
+    "leadId": 1,
+    "from": "Negotiation",
+    "to": "Negotiation",
+    "action": "WhatsApp",
+    "result": "Not Interested",
+    "note": "NOT INTERESTED",
+    "day": "2026-09-22",
+    "createdAt": "2026-09-22T14:03:01.125Z"
+  },
+  {
+    "id": 2,
+    "leadId": 2,
+    "from": "Tour Scheduled",
+    "to": "Tour Scheduled",
+    "action": "Qualification",
+    "result": "Interested",
+    "note": "INTEESTED",
+    "day": "2026-09-22",
+    "createdAt": "2026-09-22T14:03:55.229Z"
+  },
+  {
+    "id": 3,
+    "leadId": 3,
+    "from": "Tour Scheduled",
+    "to": "Tour Scheduled",
+    "action": "Call",
+    "result": "Qualified",
+    "note": "",
+    "day": "2026-09-22",
+    "createdAt": "2026-09-22T14:04:31.353Z"
+  },
+  {
+    "id": 4,
+    "leadId": 4,
+    "from": "Negotiation",
+    "to": "Negotiation",
+    "action": "Follow-up",
+    "result": "Qualified",
+    "note": "YES",
+    "day": "2026-09-22",
+    "createdAt": "2026-09-22T14:04:42.244Z"
+  }
+]

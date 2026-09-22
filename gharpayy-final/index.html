@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gharpayy LeadOps — Assessment MVP</title>
+<style>
+:root{--bg:#f6f7fb;--panel:#fff;--text:#111827;--muted:#6b7280;--line:#e5e7eb;--dark:#111827;--soft:#f3f4f6;--ok:#166534;--warn:#92400e;--hot:#b91c1c;--accent:#4f46e5}
+*{box-sizing:border-box} body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--text)}
+button,input,select,textarea{font:inherit} button{cursor:pointer}
+.app{display:flex;min-height:100vh}.sidebar{width:245px;background:#111827;color:white;padding:22px 16px;position:sticky;top:0;height:100vh}.brand{font-weight:800;font-size:20px;margin-bottom:22px}.brand small{display:block;color:#9ca3af;font-size:11px;font-weight:500;margin-top:4px}.nav{display:grid;gap:6px}.nav button{border:0;background:transparent;color:#d1d5db;text-align:left;padding:11px 12px;border-radius:10px}.nav button.active,.nav button:hover{background:#1f2937;color:white}.spacer{height:20px}.badge{display:inline-block;font-size:10px;padding:3px 7px;border-radius:999px;background:#312e81;color:#ddd6fe;margin-left:6px}
+.main{flex:1;padding:25px;max-width:1500px;margin:auto;width:100%}.top{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:18px}.title h1{margin:0;font-size:28px}.title p{margin:4px 0 0;color:var(--muted)}.actions{display:flex;gap:8px;flex-wrap:wrap} .btn{border:1px solid var(--line);background:white;padding:9px 12px;border-radius:9px}.btn.primary{background:var(--dark);color:white;border-color:var(--dark)}.btn.success{background:#166534;color:white;border-color:#166534}.btn.danger{background:#991b1b;color:#fff;border-color:#991b1b}
+.grid{display:grid;gap:14px}.kpis{grid-template-columns:repeat(5,minmax(0,1fr))}.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:0 2px 10px rgba(17,24,39,.04)}.kpi .label{font-size:12px;color:var(--muted)}.kpi .num{font-size:25px;font-weight:800;margin-top:6px}.kpi .trend{font-size:11px;color:#166534;margin-top:3px}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:16px 0}.toolbar input,.toolbar select,.field input,.field select,.field textarea{border:1px solid var(--line);background:white;border-radius:9px;padding:9px 10px;width:100%}.toolbar input{max-width:280px}.toolbar select{width:auto}
+.table{overflow:auto}.table table{width:100%;border-collapse:collapse;min-width:900px}.table th,.table td{padding:12px;border-bottom:1px solid var(--line);text-align:left;font-size:13px}.table th{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);background:#fafafa}.lead-name{font-weight:700}.sub{display:block;color:var(--muted);font-size:11px;margin-top:2px}.pill{display:inline-block;padding:5px 8px;border-radius:999px;font-size:11px;font-weight:700}.pill.hot{background:#fee2e2;color:#991b1b}.pill.warm{background:#fef3c7;color:#92400e}.pill.cold{background:#e5e7eb;color:#374151}.pill.green{background:#dcfce7;color:#166534}.score{font-weight:800}.row-actions{display:flex;gap:6px}.icon{border:1px solid var(--line);background:white;border-radius:8px;padding:7px 9px}
+.section{display:none}.section.active{display:block}.two{grid-template-columns:1.05fr .95fr}.three{grid-template-columns:repeat(3,minmax(0,1fr))}.module-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}.module-head h2{margin:0}.module-head p{color:var(--muted);margin:5px 0 0}.module-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;margin-top:14px}.call-script{background:#111827;color:white;border-radius:12px;padding:16px;line-height:1.6}.call-script h3{margin:0 0 8px}.checklist{display:grid;gap:9px;margin-top:10px}.check{padding:10px 12px;background:var(--soft);border-radius:9px}.check b{font-size:12px;display:block}.check span{color:#4b5563;font-size:12px}.timer{font-size:32px;font-weight:800;letter-spacing:.04em}.center{text-align:center}.outcomes{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}.outcomes button{padding:10px;border:1px solid var(--line);background:white;border-radius:9px}.outcomes button:hover{border-color:#9ca3af}
+.board{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;overflow:auto}.col{background:#f1f5f9;border-radius:12px;padding:10px;min-height:400px}.col h3{margin:4px 4px 10px;font-size:13px}.move-card{background:white;border:1px solid var(--line);border-radius:10px;padding:11px;margin-bottom:8px}.move-card strong{font-size:13px}.move-card p{margin:5px 0;font-size:11px;color:var(--muted)}.move-card button{border:0;background:#111827;color:white;padding:7px 9px;border-radius:7px;font-size:11px}
+.idea{display:flex;justify-content:space-between;gap:15px;align-items:flex-start}.idea h3{margin:0}.idea p{margin:6px 0;color:var(--muted);line-height:1.5}.metric{font-size:20px;font-weight:800}
+.modal{position:fixed;inset:0;background:rgba(17,24,39,.55);display:none;align-items:center;justify-content:center;padding:20px;z-index:10}.modal.show{display:flex}.modal-box{width:min(720px,100%);background:white;border-radius:14px;padding:18px}.modal-head{display:flex;justify-content:space-between;align-items:center}.field{margin-top:12px}.field label{display:block;font-size:11px;color:var(--muted);margin-bottom:5px}.foot{display:flex;justify-content:flex-end;gap:8px;margin-top:15px}
+.toast{position:fixed;right:18px;bottom:18px;background:#111827;color:white;padding:11px 14px;border-radius:9px;display:none;z-index:20}.toast.show{display:block}
+@media(max-width:1000px){.sidebar{width:190px}.kpis{grid-template-columns:repeat(3,1fr)}.two,.module-grid{grid-template-columns:1fr}.board{grid-template-columns:repeat(4,260px)}}
+@media(max-width:720px){.app{display:block}.sidebar{position:relative;width:100%;height:auto}.nav{display:flex;overflow:auto}.nav button{white-space:nowrap}.main{padding:14px}.kpis{grid-template-columns:repeat(2,1fr)}.three{grid-template-columns:1fr}.top{align-items:flex-start;flex-direction:column}}
+\n.booking-split{display:grid;grid-template-columns:1fr 1fr;gap:14px}.wa-panel{background:#eaf4ea;border:1px solid #d7e5d6;border-radius:14px;overflow:hidden}.wa-head{background:#1f6f43;color:#fff;padding:14px 16px;display:flex;justify-content:space-between;align-items:center}.wa-head h3{margin:0}.wa-body{padding:14px;min-height:520px;display:flex;flex-direction:column;gap:10px}.wa-msg{max-width:84%;padding:10px 12px;border-radius:12px;font-size:12px;line-height:1.45;box-shadow:0 1px 2px rgba(0,0,0,.04)}.wa-msg.in{background:white;align-self:flex-start;border-top-left-radius:4px}.wa-msg.out{background:#dcf8c6;align-self:flex-end;border-top-right-radius:4px}.wa-time{font-size:10px;color:#6b7280;margin-top:4px;text-align:right}.crm-panel{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px}.answer-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.question{padding:12px;background:#f8fafc;border:1px solid var(--line);border-radius:10px}.question label{display:block;font-size:11px;color:var(--muted);font-weight:700;margin-bottom:6px}.booking-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.status-chip{padding:6px 9px;border-radius:999px;background:#e0f2fe;color:#075985;font-size:11px;font-weight:700}.deadline-box{display:flex;gap:8px;align-items:end}.deadline-box .field{flex:1}.promise-box{background:#f5f3ff;border:1px solid #ddd6fe;border-radius:10px;padding:12px;margin-top:12px}.promise-box strong{display:block;margin-bottom:5px}.timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}.timeline .t{padding:9px;border:1px solid var(--line);border-radius:9px;background:#fafafa;text-align:center;font-size:11px}.timeline .t.active{border-color:#111827;background:#f3f4f6;font-weight:700}.save-strip{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}.tiny{font-size:11px;color:var(--muted)}\n@media(max-width:1000px){.booking-split{grid-template-columns:1fr}.answer-grid{grid-template-columns:1fr}.timeline{grid-template-columns:repeat(2,1fr)}}\n</style></head>
+<body>
+<div class="app">
+<aside class="sidebar"><div class="brand">Gharpayy LeadOps<small>Assessment MVP · by Aman</small><small id="apiStatus">Backend: connecting…</small></div>
+<div class="nav">
+<button class="active" data-section="dashboard">Dashboard</button>
+<button data-section="leads">Leads</button>
+<button data-section="mpower">M-POWER CALL <span class="badge">LIVE</span></button>
+<button data-section="movement">Movement CARE</button>
+<button data-section="booking">Booking Flow Split <span class="badge">NEW</span></button>
+<button data-section="ideas">2 New Ideas</button>
+</div></aside>
+<main class="main">
+<section id="dashboard" class="section active"><div class="top"><div class="title"><h1>Lead Command Center</h1><p>One place to see intent, action, movement and conversion.</p></div><div class="actions"><button class="btn primary" id="demoRun">Run 60-sec Demo</button><button class="btn" id="reset">Reset Demo</button></div></div>
+<div class="grid kpis"><div class="card kpi"><div class="label">Open leads</div><div class="num" id="kOpen">23</div><div class="trend">Live pipeline</div></div><div class="card kpi"><div class="label">Hot leads</div><div class="num" id="kHot">8</div><div class="trend">Priority queue</div></div><div class="card kpi"><div class="label">Calls today</div><div class="num" id="kCalls">14</div><div class="trend">+4 vs yesterday</div></div><div class="card kpi"><div class="label">Follow-ups due</div><div class="num" id="kDue">6</div><div class="trend">Act before SLA</div></div><div class="card kpi"><div class="label">Tour conversion</div><div class="num" id="kConv">18%</div><div class="trend">Visit → booking</div></div></div>
+<div class="grid two" style="margin-top:14px"><div class="card"><div class="module-head"><div><h2>Priority leads</h2><p>Sorted by intent score and next action.</p></div><button class="btn" onclick="showSection('leads')">Open Leads</button></div><div id="priorityList" style="margin-top:10px"></div></div><div class="card"><div class="module-head"><div><h2>Today’s operating rhythm</h2><p>Simple execution loop for the operator.</p></div></div><div class="checklist"><div class="check"><b>1. Qualify</b><span>Know budget, area, move-in date and intent.</span></div><div class="check"><b>2. Act</b><span>Call, message or schedule a tour.</span></div><div class="check"><b>3. Capture</b><span>Write outcome + next step back into CRM.</span></div><div class="check"><b>4. Recover</b><span>Surface missed follow-ups before leads leak.</span></div></div></div></div>
+</section>
+<section id="leads" class="section"><div class="top"><div class="title"><h1>Leads</h1><p id="leadSubtitle">Live leads from the backend with searchable intent and next actions.</p></div><div class="actions"><button class="btn primary" onclick="openNewLead()">+ Add Lead</button></div></div>
+<div class="card"><div class="toolbar"><input id="search" placeholder="Search name, phone, area…"><select id="stageFilter"><option value="all">All stages</option><option>New</option><option>Contacted</option><option>Tour Scheduled</option><option>Tour Done</option><option>Negotiation</option><option>Booked</option></select><select id="intentFilter"><option value="all">All intent</option><option>Hot</option><option>Warm</option><option>Cold</option></select><button class="btn" id="clearFilters">Clear</button></div><div class="table"><table><thead><tr><th>Lead</th><th>Stage</th><th>Intent</th><th>Area / budget</th><th>Assigned</th><th>Next action</th><th></th></tr></thead><tbody id="leadTable"></tbody></table></div></div></section>
+<section id="mpower" class="section"><div class="top"><div class="title"><h1>M-POWER CALL</h1><p>Run the call with context, a conversation guide, and automatic write-back.</p></div></div>
+<div class="card"><div class="toolbar"><select id="callLead"></select><button class="btn primary" id="startCall">📞 Start Call</button><button class="btn danger" id="endCall" disabled>End Call</button></div><div class="module-grid"><div><div class="call-script"><h3>Why are we calling?</h3><div id="why"></div><h3 style="margin-top:16px">What should I say?</h3><div id="script"></div></div><div class="card" style="margin-top:12px"><h3 style="margin-top:0">What to confirm</h3><div id="confirm"></div></div></div><div><div class="card center"><div class="label" style="color:var(--muted);font-size:12px">Call timer</div><div class="timer" id="timer">00:00</div><div id="callState" style="color:var(--muted);font-size:12px;margin-top:4px">Ready</div><div class="outcomes"><button data-outcome="Interested">Interested</button><button data-outcome="Follow-up">Follow-up</button><button data-outcome="Not Interested">Not Interested</button><button data-outcome="Call Back">Call Back</button><button data-outcome="Wrong Number">Wrong Number</button><button data-outcome="Booked">Booked</button></div></div><div class="card" style="margin-top:12px"><div class="field"><label>Notes / call intelligence</label><textarea id="callNotes" rows="6" placeholder="Example: Needs 1BHK near Whitefield under ₹16k. Move-in by 10 Oct."></textarea></div><div class="field"><label>Next follow-up</label><input id="nextFollow" type="date"></div><div class="foot"><button class="btn success" id="saveCall">Save & Write Back</button></div></div></div></div></div></section>
+<section id="movement" class="section"><div class="top"><div class="title"><h1>Movement CARE</h1><p>Daily promise → pick 30 leads one by one → work them → close with a WhatsApp update.</p></div><div class="actions"><button class="btn primary" id="startMovement">Start Today</button><button class="btn" id="closeMovement">Close Day</button></div></div>
+<div class="grid three"><div class="card"><div class="label" style="color:var(--muted);font-size:12px">Today’s promise</div><div class="metric" id="promise">Not started</div><p id="promiseText" style="color:var(--muted);font-size:12px">Promise a concrete result before you start.</p></div><div class="card"><div class="label" style="color:var(--muted);font-size:12px">Lead execution</div><div class="metric" id="done">0 / 30</div><p style="color:var(--muted);font-size:12px">Leads worked today.</p><div style="height:8px;background:#eef2f7;border-radius:999px;overflow:hidden;margin-top:10px"><div id="moveProgress" style="height:100%;width:0%;background:#111827"></div></div></div><div class="card"><div class="label" style="color:var(--muted);font-size:12px">Result promise</div><div class="metric" id="result">0 / 2</div><p id="resultText" style="color:var(--muted);font-size:12px">Qualified outcomes achieved.</p></div></div>
+<div class="grid two" style="margin-top:14px"><div class="card"><div class="module-head"><div><h2>One lead at a time</h2><p>Stay focused on the current lead. Complete the action, capture the result, then take the next lead.</p></div><button class="btn success" id="nextMovement">Take Next Lead</button></div><div id="currentLeadCard" style="margin-top:12px"></div></div><div class="card"><div class="module-head"><div><h2>End-of-day update</h2><p>Close the loop with a WhatsApp-ready summary.</p></div><button class="btn" id="copyWhatsApp">Copy</button></div><textarea id="whatsappText" rows="11" style="width:100%;margin-top:12px;border:1px solid var(--line);border-radius:10px;padding:12px;background:#fafafa" readonly></textarea><div class="actions" style="margin-top:10px"><button class="btn primary" id="openWhatsApp">Open WhatsApp</button></div></div></div>
+<div class="card" style="margin-top:14px"><div class="module-head"><div><h2>Today’s lead queue</h2><p>Up to 30 prioritized leads are reserved for the day.</p></div><span class="pill green" id="sessionStatus">Not started</span></div><div class="table" style="margin-top:10px"><table><thead><tr><th>#</th><th>Lead</th><th>Current stage</th><th>Action</th><th>Result</th></tr></thead><tbody id="movementQueue"></tbody></table></div></div>
+</section>
+<section id="booking" class="section"><div class="top"><div class="title"><h1>Booking Flow Split</h1><p>WhatsApp conversation on the left. CRM decision workspace on the right.</p></div><div class="actions"><select id="bookingLead" style="min-width:280px"></select><button class="btn" id="refreshBooking">Refresh Context</button></div></div>
+<div class="booking-split">
+  <div class="wa-panel"><div class="wa-head"><div><h3>WhatsApp</h3><div style="font-size:11px;opacity:.85" id="waContact">Customer context</div></div><span style="font-size:11px">Conversation view</span></div><div class="wa-body" id="waMessages"></div><div style="padding:12px;border-top:1px solid #d7e5d6;background:#f7fbf7"><div class="field" style="margin:0"><label>Operator reply draft</label><textarea id="waDraft" rows="3" placeholder="Type a draft reply…"></textarea></div><div class="foot"><button class="btn" id="insertReply">Insert into CRM</button></div></div></div>
+  <div class="crm-panel"><div class="booking-top"><div><h2 style="margin:0" id="bookingLeadName">Booking workspace</h2><p class="tiny" id="bookingMeta">Select a lead to load conversation context.</p></div><span class="status-chip" id="bookingStatus">Draft</span></div>
+    <div class="card" style="margin-top:12px;background:#fafafa"><div class="module-head"><div><h3 style="margin:0">Questions to confirm</h3><p>Capture decision-critical answers before promising the booking step.</p></div></div><div class="answer-grid" id="bookingQuestions" style="margin-top:10px"></div></div>
+    <div class="grid two" style="margin-top:12px"><div class="card"><h3 style="margin:0">Next step</h3><p class="tiny">What should happen immediately after this conversation?</p><div class="field"><label>Action</label><select id="bookingNext"><option>Send property options</option><option>Schedule tour</option><option>Collect documents</option><option>Confirm booking</option><option>Call customer back</option></select></div></div><div class="card"><h3 style="margin:0">Deadline</h3><p class="tiny">Anchor the next action to a concrete time.</p><div class="deadline-box"><div class="field"><label>Date</label><input type="date" id="bookingDeadlineDate"></div><div class="field"><label>Time</label><input type="time" id="bookingDeadlineTime"></div></div></div></div>
+    <div class="promise-box"><strong>Closing promise</strong><textarea id="bookingPromise" rows="3" placeholder="Example: I’ll send 3 matched options by 7 PM today and call you at 7:15 PM."></textarea></div>
+    <div class="timeline"><div class="t active" id="bt1">1 · Understand</div><div class="t" id="bt2">2 · Confirm</div><div class="t" id="bt3">3 · Promise</div><div class="t" id="bt4">4 · Book / follow up</div></div>
+    <div class="save-strip"><div class="tiny" id="bookingSaved">Not saved yet.</div><div class="actions"><button class="btn" id="bookingComplete">Mark Ready to Book</button><button class="btn success" id="saveBooking">Save Booking Flow</button></div></div>
+  </div>
+</div></section>
+<section id="ideas" class="section"><div class="top"><div class="title"><h1>2 New Ideas</h1><p>Extra product ideas designed to reduce lead leakage and operator decision time.</p></div></div><div class="grid two"><div class="card idea"><div><h3>1. NEXT-ACTION AI</h3><p>After every call, use stage, intent, notes, budget and timeline to recommend the single next action: call, WhatsApp, schedule tour, send match, or revive.</p><p><b>Why:</b> operators waste time deciding what to do next. One recommended action makes execution faster and more consistent.</p><p><b>MVP:</b> rules first; AI later. Example: “Hot + tour done + budget matched → call within 30 min.”</p></div><div><div class="label" style="color:var(--muted);font-size:11px">Success metric</div><div class="metric">↓ time-to-next-action</div></div></div><div class="card idea"><div><h3>2. LEAKAGE GUARD</h3><p>A live queue that flags leads with no owner, overdue follow-up, repeated unanswered calls, or stale movement.</p><p><b>Why:</b> missed response windows directly create preventable lead loss.</p><p><b>MVP:</b> SLA timer + owner alert + one-click reassign/revive.</p></div><div><div class="label" style="color:var(--muted);font-size:11px">Success metric</div><div class="metric">↓ overdue leads</div></div></div></div></section>
+</main></div>
+<div class="modal" id="leadModal"><div class="modal-box"><div class="modal-head"><h2 style="margin:0">Add lead</h2><button class="icon" onclick="closeModal()">✕</button></div><div class="grid two"><div class="field"><label>Name</label><input id="nName"></div><div class="field"><label>Phone</label><input id="nPhone"></div><div class="field"><label>Area</label><input id="nArea" placeholder="Whitefield"></div><div class="field"><label>Budget</label><input id="nBudget" placeholder="16000"></div></div><div class="field"><label>Intent</label><select id="nIntent"><option>Hot</option><option>Warm</option><option>Cold</option></select></div><div class="foot"><button class="btn" onclick="closeModal()">Cancel</button><button class="btn primary" id="saveLead">Add Lead</button></div></div></div>
+<div class="toast" id="toast"></div>
+<script>const seed=[
+['Aakash B.','+91 96xxx 11008','Instagram','Negotiation','Hot',92,'Koramangala','16000','Abhay','Call today'],['Sneha P.','+91 90xxx 24681','Google','Tour Scheduled','Hot',91,'Whitefield','16000','Madhav','Confirm tour'],['Ritika G.','+91 98xxx 55501','Instagram','Tour Scheduled','Hot',89,'Whitefield','14000','Madhav','Confirm tour'],['Sanjay P.','+91 99xxx 41001','Referral','Negotiation','Hot',88,'Koramangala','15000','Abhay','Handle objection'],['Megha B.','+91 91xxx 88812','Referral','Negotiation','Hot',87,'Whitefield','15000','Madhav','Call today'],['Karthik R.','+91 98xxx 12345','Instagram','Tour Scheduled','Hot',86,'Koramangala','14000','Abhay','Tour reminder'],['Aanya L.','+91 99xxx 70077','Google','Negotiation','Hot',86,'Whitefield','17000','Madhav','Negotiate'],['Harsh V.','+91 92xxx 70044','Google','Tour Done','Hot',84,'Whitefield','14000','Madhav','Post-tour call'],['Divya N.','+91 95xxx 22334','Referral','Tour Done','Hot',82,'Koramangala','15000','Abhay','Ask for decision'],['Yash D.','+91 97xxx 12490','Instagram','Tour Scheduled','Hot',81,'Whitefield','15000','Madhav','Confirm tour'],['Mohit J.','+91 97xxx 99021','Instagram','Tour Done','Hot',79,'Koramangala','14000','Abhay','Post-tour call'],['Riya D.','+91 93xxx 31415','Housing.com','Tour Done','Hot',78,'Indiranagar','14000','Satyam','Ask for decision'],['Nitya K.','+91 98xxx 71200','Google','Tour Done','Warm',71,'Koramangala','14000','Abhay','Send matched option'],['Devika R.','+91 99xxx 33221','Referral','Negotiation','Warm',67,'Indiranagar','13000','Satyam','Call in 2h'],['Pranav S.','+91 92xxx 44477','Housing.com','Tour Done','Warm',64,'Indiranagar','12000','Satyam','Follow up'],['Ananya G.','+91 91xxx 55310','Justdial','Negotiation','Warm',62,'Indiranagar','11000','Satyam','Address budget gap'],['Tanya M.','+91 90xxx 70333','Justdial','Tour Done','Warm',58,'Indiranagar','12000','Satyam','Follow up'],['Reema A.','+91 95xxx 80021','Google','Tour Scheduled','Warm',55,'HSR Layout','12000','Abhinav','Confirm tour'],['Rahul V.','+91 94xxx 18825','Google','Contacted','Warm',51,'Indiranagar','13000','Satyam','Qualification call'],['Arjun K.','+91 98xxx 70011','Google','New','Warm',48,'BTM','12000','Abhinav','First call'],['Vikram S.','+91 99xxx 88112','Referral','Contacted','Cold',38,'HSR Layout','9000','Abhinav','Revive'],['Manish T.','+91 91xxx 60099','Justdial','Contacted','Cold',32,'HSR Layout','10000','Abhinav','Revive'],['Faisal N.','+91 90xxx 13500','Instagram','New','Cold',28,'HSR Layout','10000','Abhinav','First call'],['Aarav M.','+91 91xxx 11122','Referral','New','Warm',47,'Whitefield','14000','Aman','First call'],['Ishita K.','+91 91xxx 33214','Instagram','Contacted','Warm',45,'Koramangora','13500','Aman','Qualification call'],['Neeraj S.','+91 92xxx 45618','Google','New','Warm',43,'HSR Layout','12500','Aman','First call'],['Pooja R.','+91 93xxx 64012','Referral','Contacted','Warm',41,'Indiranagar','13500','Aman','Follow up'],['Kabir A.','+91 94xxx 77551','Instagram','New','Cold',36,'BTM','10000','Aman','First call'],['Nandini V.','+91 95xxx 82117','Google','Contacted','Cold',34,'Whitefield','10500','Aman','Revive'],['Rohan G.','+91 96xxx 91317','Justdial','New','Cold',30,'Koramangora','9500','Aman','First call']
+].map((x,i)=>({id:i+1,name:x[0],phone:x[1],source:x[2],stage:x[3],intent:x[4],score:x[5],area:x[6],budget:x[7],owner:x[8],next:x[9]}));
+
+const API_BASE = '/api';
+let leads = [];
+let selectedCall = null;
+let callTimer = null;
+let callSeconds = 0;
+let activeOutcome = '';
+let movementDone = 0;
+const $=id=>document.getElementById(id);
+
+async function api(path, options={}) {
+  const res = await fetch(API_BASE + path, {
+    headers: {'Content-Type':'application/json'},
+    ...options
+  });
+  const data = await res.json().catch(()=>({}));
+  if (!res.ok) throw new Error(data.error || `Request failed (${res.status})`);
+  return data;
+}
+
+function showToast(msg){$('toast').textContent=msg;$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),2200)}
+function showBackendStatus(ok){$('apiStatus').textContent=ok?'Backend: connected':'Backend: offline';$('apiStatus').style.color=ok?'#86efac':'#fca5a5'}
+
+async function loadAll(){
+  try {
+    const [leadData, stats] = await Promise.all([api('/leads'), api('/stats')]);
+    leads = leadData.leads;
+    selectedCall = selectedCall && leads.some(l=>l.id===selectedCall) ? selectedCall : leads[0]?.id;
+    movementDone = stats.movementDoneToday || 0;
+    showBackendStatus(true);
+    renderKpis(stats); renderPriority(); renderLeads(); renderCallLead(); renderBoard();
+  } catch (err) {
+    console.error(err);
+    showBackendStatus(false);
+    leads = JSON.parse(localStorage.getItem('gharpayy_leads')||'null') || seed;
+    selectedCall = leads[0]?.id || null;
+    movementDone = Number(localStorage.getItem('movement_done')||0);
+    renderKpis(); renderPriority(); renderLeads(); renderCallLead(); renderBoard();
+    showToast('Backend unavailable — demo fallback is active.');
+  }
+}
+
+function showSection(id){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));$(id).classList.add('active');document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.section===id));if(id==='leads')renderLeads();if(id==='mpower')renderCallLead();if(id==='movement')loadMovementCare();if(id==='booking')loadBookingFlow();}
+document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>showSection(b.dataset.section));
+
+function renderKpis(stats){
+  stats = stats || {openLeads:leads.filter(l=>l.stage!=='Booked').length,hotLeads:leads.filter(l=>l.intent==='Hot').length,callsToday:14,followUpsDue:Math.max(2,Math.round(leads.filter(l=>['New','Contacted','Negotiation'].includes(l.stage)).length/4)),tourConversion:18};
+  $('kOpen').textContent=stats.openLeads; $('kHot').textContent=stats.hotLeads; $('kCalls').textContent=stats.callsToday; $('kDue').textContent=stats.followUpsDue; $('kConv').textContent=(stats.tourConversion||0)+'%';
+}
+
+function renderPriority(){let top=[...leads].sort((a,b)=>b.score-a.score).slice(0,5);$('priorityList').innerHTML=top.map(l=>`<div style="display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)"><div><b>${l.name}</b><span class="sub">${l.area} · ₹${Number(l.budget).toLocaleString('en-IN')} · ${l.next}</span></div><div><span class="pill ${l.intent.toLowerCase()}">${l.intent}</span> <b class="score">${l.score}</b></div></div>`).join('')}
+
+function renderLeads(){let q=($('search').value||'').toLowerCase(),sf=$('stageFilter').value,inf=$('intentFilter').value;let arr=leads.filter(l=>(!q||[l.name,l.phone,l.area,l.source].join(' ').toLowerCase().includes(q))&&(sf==='all'||l.stage===sf)&&(inf==='all'||l.intent===inf));$('leadTable').innerHTML=arr.map(l=>`<tr><td><span class="lead-name">${l.name}</span><span class="sub">${l.phone} · ${l.source}</span></td><td><span class="pill green">${l.stage}</span></td><td><span class="pill ${l.intent.toLowerCase()}">${l.intent}</span> <b>${l.score}</b></td><td>${l.area}<span class="sub">₹${Number(l.budget).toLocaleString('en-IN')}</span></td><td>${l.owner}</td><td>${l.next}</td><td><div class="row-actions"><button class="icon" onclick="selectForCall(${l.id})">📞</button><button class="icon" onclick="quickMove(${l.id})">→</button></div></td></tr>`).join('');$('leadSubtitle').textContent=`${leads.length} live leads from the backend with searchable intent and next actions`;}
+$('search').oninput=renderLeads;$('stageFilter').onchange=renderLeads;$('intentFilter').onchange=renderLeads;$('clearFilters').onclick=()=>{$('search').value='';$('stageFilter').value='all';$('intentFilter').value='all';renderLeads()};
+
+function selectForCall(id){selectedCall=id;showSection('mpower');renderCallLead();renderCallContext()}
+function renderCallLead(){$('callLead').innerHTML=leads.map(l=>`<option value="${l.id}" ${l.id===selectedCall?'selected':''}>${l.name} · ${l.area} · ${l.intent} ${l.score}</option>`).join('');renderCallContext()}
+$('callLead').onchange=e=>{selectedCall=Number(e.target.value);renderCallContext()};
+function renderCallContext(){let l=leads.find(x=>x.id===selectedCall)||leads[0];if(!l)return;$('why').textContent=`Follow up on ${l.stage.toLowerCase()} lead in ${l.area}. The current intent score is ${l.score}, so the goal is to move the lead to the next concrete action.`;$('script').textContent=`“Hi ${l.name.split(' ')[0]}, this is Aman from Gharpayy. You had shown interest in a stay around ${l.area}. I wanted to quickly understand whether you’re still looking, your current budget, and your move-in timeline so I can suggest the right option.”`;$('confirm').innerHTML=[`Budget fit: around ₹${Number(l.budget).toLocaleString('en-IN')}`,`Area fit: ${l.area}`,`Current stage: ${l.stage}`,`Decision timeline / move-in date`,`Main objection or blocker`].map(x=>`<div class="check" style="margin-bottom:8px"><span>• ${x}</span></div>`).join('')}
+
+$('startCall').onclick=()=>{if(callTimer)return;callSeconds=0;$('timer').textContent='00:00';$('callState').textContent='Call in progress';$('startCall').disabled=true;$('endCall').disabled=false;callTimer=setInterval(()=>{callSeconds++;$('timer').textContent=`${String(Math.floor(callSeconds/60)).padStart(2,'0')}:${String(callSeconds%60).padStart(2,'0')}`},1000)};
+$('endCall').onclick=()=>{clearInterval(callTimer);callTimer=null;$('callState').textContent='Call ended · choose outcome';$('endCall').disabled=true;showToast('Call ended. Select an outcome and save.')};
+document.querySelectorAll('.outcomes button').forEach(b=>b.onclick=()=>{activeOutcome=b.dataset.outcome;document.querySelectorAll('.outcomes button').forEach(x=>x.style.outline='none');b.style.outline='2px solid #111827';showToast('Outcome selected: '+activeOutcome)});
+
+$('saveCall').onclick=async()=>{
+  let l=leads.find(x=>x.id===selectedCall); if(!l)return; if(!activeOutcome){showToast('Pick a call outcome first.');return}
+  try {
+    await api(`/leads/${l.id}/calls`,{method:'POST',body:JSON.stringify({outcome:activeOutcome,notes:$('callNotes').value.trim(),nextFollowUp:$('nextFollow').value||null,durationSeconds:callSeconds})});
+    await refreshAfterChange(); $('callNotes').value=''; $('nextFollow').value=''; activeOutcome='';
+    document.querySelectorAll('.outcomes button').forEach(x=>x.style.outline='none'); $('timer').textContent='00:00'; $('callState').textContent='Ready'; $('startCall').disabled=false;
+    showToast('Call intelligence written back to backend CRM.');
+  } catch(err) {
+    console.error(err);
+    l.next=activeOutcome==='Interested'?'Send matched options':activeOutcome==='Booked'?'Onboard customer':activeOutcome==='Call Back'?'Call at agreed time':'Update CRM';
+    if(activeOutcome==='Booked')l.stage='Booked';else if(['Interested','Follow-up','Call Back'].includes(activeOutcome))l.stage='Contacted';
+    if($('callNotes').value.trim())l.note=$('callNotes').value.trim();
+    localStorage.setItem('gharpayy_leads',JSON.stringify(leads)); showToast('Saved in demo fallback; backend call failed.');
+  }
+};
+
+let movementSession = {status:'not_started', promise:'', resultTarget:2, queue:[], activeIndex:-1, completed:[], qualified:0, summary:''};
+function esc(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function resultToAction(result){return {Qualified:'Send match / schedule tour',Interested:'Call back + send options','Follow-up':'Schedule follow-up','Not Interested':'Mark lost','No Answer':'Retry later',Booked:'Start onboarding'}[result]||'Update CRM'}
+function renderMovement(){
+  const q=movementSession.queue||[]; const completed=movementSession.completed||[];
+  $('promise').textContent=movementSession.promise||'Not started';
+  $('promiseText').textContent=movementSession.promise?`Goal for today · ${movementSession.promise}`:'Promise a concrete result before you start.';
+  $('done').textContent=`${completed.length} / ${q.length||30}`;
+  const pct=q.length?Math.min(100,Math.round(completed.length/q.length*100)):0; $('moveProgress').style.width=pct+'%';
+  $('result').textContent=`${movementSession.qualified||0} / ${movementSession.resultTarget||2}`;
+  $('resultText').textContent=`${movementSession.qualified||0} qualified outcome(s) captured.`;
+  const statusLabel={not_started:'Not started',active:'In progress',closed:'Day closed'}[movementSession.status]||'In progress'; $('sessionStatus').textContent=statusLabel;
+  const active=q[movementSession.activeIndex];
+  $('currentLeadCard').innerHTML=active?`<div class="check" style="border:1px solid var(--line);background:#fff"><div style="display:flex;justify-content:space-between;gap:12px"><div><div style="font-size:18px;font-weight:800">${esc(active.name)}</div><div class="sub">${esc(active.area)} · ₹${Number(active.budget||0).toLocaleString('en-IN')} · ${esc(active.intent)} ${active.score}</div><div class="sub">Stage: ${esc(active.stage)} · Owner: ${esc(active.owner)}</div></div><span class="pill ${String(active.intent).toLowerCase()}">${esc(active.intent)}</span></div><div class="field"><label>What did you do?</label><select id="moveAction"><option>Call</option><option>WhatsApp</option><option>Qualification</option><option>Tour coordination</option><option>Follow-up</option></select></div><div class="field"><label>Result</label><select id="moveResult"><option>Qualified</option><option>Interested</option><option>Follow-up</option><option>No Answer</option><option>Not Interested</option><option>Booked</option></select></div><div class="field"><label>Result note</label><textarea id="moveNote" rows="3" placeholder="What happened? What is the next concrete step?"></textarea></div><div class="foot"><button class="btn primary" onclick="completeMovementLead()">Save Result & Take Next</button></div></div>`:'<div class="check"><b>No active lead</b><span>Click “Take Next Lead” to work the next lead in today’s queue.</span></div>';
+  $('movementQueue').innerHTML=q.map((item,i)=>{const done=completed.find(x=>x.leadId===item.id); const activeClass=i===movementSession.activeIndex?' style="background:#f8fafc"':''; return `<tr${activeClass}><td>${i+1}</td><td><b>${esc(item.name)}</b><span class="sub">${esc(item.area)} · ${esc(item.intent)} ${item.score}</span></td><td>${esc(item.stage)}</td><td>${done?esc(done.action):'Pending'}</td><td>${done?`<span class="pill green">${esc(done.result)}</span>`:'—'}</td></tr>`}).join('');
+  const lines=[`*Gharpayy Movement CARE — ${new Date().toLocaleDateString('en-IN')}*`,`Promise: ${movementSession.promise||'Not set'}`,`Leads worked: ${completed.length}/${q.length||30}`,`Qualified: ${movementSession.qualified||0}/${movementSession.resultTarget||2}`];
+  if(completed.length){lines.push('',...completed.slice(-5).map((x,i)=>`${i+1}. ${x.name} — ${x.result} (${x.action})`))}
+  if(movementSession.status==='closed') lines.push('',`Day closed at ${new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'})}.`); else lines.push('',`Next: ${active?active.name:'Take the next lead'}`);
+  $('whatsappText').value=lines.join('\n');
+}
+async function loadMovementCare(){
+  try { movementSession=await api('/movement-care/today'); movementSession.queue=(movementSession.queue||[]).map(id=>leads.find(l=>l.id===id)).filter(Boolean); renderMovement(); }
+  catch(e){ renderMovement(); }
+}
+$('startMovement').onclick=async()=>{
+  const promise=prompt('What result do you promise for today?','Work 30 leads and create 2 qualified opportunities'); if(promise===null)return;
+  const target=Number(prompt('How many qualified results is the target?','2')); if(!target||target<1)return;
+  try{movementSession=await api('/movement-care/start',{method:'POST',body:JSON.stringify({promise,resultTarget:target,limit:30})}); movementSession.queue=(movementSession.queue||[]).map(id=>leads.find(l=>l.id===id)).filter(Boolean); renderMovement(); showToast(`Movement CARE started with ${movementSession.queue.length} leads.`);}catch(e){showToast(e.message)}
+};
+$('nextMovement').onclick=async()=>{
+  if(movementSession.status==='not_started'){showToast('Start today first.');return}
+  if(movementSession.status==='closed'){showToast('Today is already closed.');return}
+  const completedIds=new Set((movementSession.completed||[]).map(x=>x.leadId));
+  let nextIndex=movementSession.queue.findIndex((id,i)=>!completedIds.has(id) && i>(movementSession.activeIndex??-1));
+  if(nextIndex<0) nextIndex=movementSession.queue.findIndex(id=>!completedIds.has(id));
+  if(nextIndex<0){movementSession.activeIndex=-1;renderMovement();showToast('All 30 selected leads are complete. Close the day.');return}
+  movementSession.activeIndex=nextIndex; renderMovement();
+};
+window.completeMovementLead=async()=>{
+  const item=movementSession.queue[movementSession.activeIndex]; if(!item){showToast('Take a lead first.');return}
+  const action=$('moveAction').value,result=$('moveResult').value,note=$('moveNote').value.trim();
+  try{movementSession=await api(`/movement-care/today/leads/${item.id}/complete`,{method:'POST',body:JSON.stringify({action,result,note})}); movementSession.queue=(movementSession.queue||[]).map(id=>leads.find(l=>l.id===id)).filter(Boolean); await refreshAfterChange(false); renderMovement(); showToast(`${item.name} completed: ${result}${movementSession.activeIndex>=0?' — next lead loaded.':' — queue complete.'}`);}catch(e){showToast(e.message)}
+};
+$('closeMovement').onclick=async()=>{
+  if(!movementSession.queue.length){showToast('Start today before closing the day.');return}
+  try{movementSession=await api('/movement-care/close',{method:'POST'}); movementSession.queue=(movementSession.queue||[]).map(id=>leads.find(l=>l.id===id)).filter(Boolean); renderMovement(); showToast('Day closed. WhatsApp update is ready.');}catch(e){showToast(e.message)}
+};
+$('copyWhatsApp').onclick=async()=>{try{await navigator.clipboard.writeText($('whatsappText').value);showToast('WhatsApp update copied.')}catch(e){$('whatsappText').select();document.execCommand('copy');showToast('WhatsApp update copied.')}};
+$('openWhatsApp').onclick=()=>{const text=encodeURIComponent($('whatsappText').value);window.open(`https://wa.me/?text=${text}`,'_blank')};
+function quickMove(id){showSection('movement'); if(movementSession.status!=='active'){showToast('Start Movement CARE to reserve today’s 30 leads.');return;} const idx=movementSession.queue.findIndex(x=>x.id===id); const done=(movementSession.completed||[]).some(x=>x.leadId===id); if(done){showToast('That lead is already completed today. Pick another lead.');return} if(idx>=0){movementSession.activeIndex=idx;renderMovement();}}
+
+let bookingState={leadId:null,messages:[],questions:[],answers:{},nextStep:'Send property options',deadlineDate:'',deadlineTime:'',closingPromise:'',status:'Draft',savedAt:null};
+function renderBooking(){
+  const l=leads.find(x=>x.id===Number(bookingState.leadId))||leads[0]; if(!l)return;
+  $('bookingLead').innerHTML=leads.slice(0,30).map(x=>`<option value="${x.id}" ${x.id===l.id?'selected':''}>${esc(x.name)} · ${esc(x.area)} · ${esc(x.intent)}</option>`).join('');
+  $('bookingLeadName').textContent=`${l.name} · Booking Flow`;$('bookingMeta').textContent=`${l.phone} · ${l.area} · ₹${Number(l.budget||0).toLocaleString('en-IN')} · ${l.stage}`;$('bookingStatus').textContent=bookingState.status||'Draft';
+  $('waContact').textContent=`${l.name} · ${l.area}`;
+  $('waMessages').innerHTML=(bookingState.messages||[]).map(m=>`<div class="wa-msg ${m.from==='operator'?'out':'in'}">${esc(m.text)}<div class="wa-time">${esc(m.time||'Today')}</div></div>`).join('');
+  $('bookingQuestions').innerHTML=(bookingState.questions||[]).map((q,i)=>`<div class="question"><label>${i+1}. ${esc(q.label)}</label><input data-book-q="${i}" value="${esc(bookingState.answers?.[q.key]||'')}" placeholder="Capture answer…"></div>`).join('');
+  $('bookingNext').value=bookingState.nextStep||'Send property options';$('bookingDeadlineDate').value=bookingState.deadlineDate||'';$('bookingDeadlineTime').value=bookingState.deadlineTime||'';$('bookingPromise').value=bookingState.closingPromise||'';
+  $('bookingSaved').textContent=bookingState.savedAt?`Saved ${new Date(bookingState.savedAt).toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'})}`:'Not saved yet.';
+  const answered=Object.values(bookingState.answers||{}).filter(v=>String(v).trim()).length, total=(bookingState.questions||[]).length;
+  ['bt1','bt2','bt3','bt4'].forEach(x=>$(x).classList.remove('active')); if(answered===0)$('bt1').classList.add('active'); else if(answered<total)$('bt2').classList.add('active'); else if(!bookingState.closingPromise)$('bt3').classList.add('active'); else $('bt4').classList.add('active');
+}
+async function loadBookingFlow(){
+  try{if(!bookingState.leadId)bookingState.leadId=selectedCall||leads[0]?.id; bookingState=await api(`/booking-flow/${bookingState.leadId}`); renderBooking();}catch(e){showToast('Booking context could not load: '+e.message)}
+}
+$('bookingLead').onchange=async()=>{bookingState.leadId=Number($('bookingLead').value);try{bookingState=await api(`/booking-flow/${bookingState.leadId}`);renderBooking();}catch(e){showToast(e.message)}};
+$('refreshBooking').onclick=loadBookingFlow;
+$('insertReply').onclick=()=>{const draft=$('waDraft').value.trim();if(!draft){showToast('Write a reply draft first.');return}bookingState.messages.push({from:'operator',text:draft,time:new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'})});bookingState.closingPromise=bookingState.closingPromise||draft; $('waDraft').value='';renderBooking();showToast('Reply added to conversation context.');};
+$('saveBooking').onclick=async()=>{
+  const l=leads.find(x=>x.id===Number(bookingState.leadId));if(!l)return;
+  document.querySelectorAll('[data-book-q]').forEach(inp=>{const idx=Number(inp.dataset.bookQ);const key=bookingState.questions[idx]?.key;if(key)bookingState.answers[key]=inp.value.trim()});
+  bookingState.nextStep=$('bookingNext').value;bookingState.deadlineDate=$('bookingDeadlineDate').value;bookingState.deadlineTime=$('bookingDeadlineTime').value;bookingState.closingPromise=$('bookingPromise').value.trim();
+  if(!bookingState.closingPromise){showToast('Add a closing promise before saving.');return}
+  try{bookingState=await api(`/booking-flow/${l.id}`,{method:'POST',body:JSON.stringify({messages:bookingState.messages,answers:bookingState.answers,nextStep:bookingState.nextStep,deadlineDate:bookingState.deadlineDate,deadlineTime:bookingState.deadlineTime,closingPromise:bookingState.closingPromise,status:bookingState.status})});await refreshAfterChange(false);renderBooking();showToast('Booking flow saved to backend CRM.');}catch(e){showToast(e.message)}
+};
+$('bookingComplete').onclick=async()=>{$('bookingStatus').textContent='Ready to Book';bookingState.status='Ready to Book';await $('saveBooking').onclick();};
+
+$('demoRun').onclick=()=>{showSection('mpower');selectForCall(leads[0].id);showToast('Demo ready: run M-POWER CALL on Aakash.')};
+$('reset').onclick=async()=>{try{await api('/reset',{method:'POST'});showToast('Backend demo data reset.');await loadAll()}catch(err){localStorage.removeItem('gharpayy_leads');localStorage.removeItem('movement_done');location.reload()}};
+
+function openNewLead(){$('leadModal').classList.add('show')}function closeModal(){$('leadModal').classList.remove('show')}window.closeModal=closeModal;window.openNewLead=openNewLead;
+$('saveLead').onclick=async()=>{let name=$('nName').value.trim();if(!name){showToast('Add a name.');return};const payload={name,phone:$('nPhone').value||'Not provided',area:$('nArea').value||'Not set',budget:$('nBudget').value||0,intent:$('nIntent').value};try{await api('/leads',{method:'POST',body:JSON.stringify(payload)});closeModal();await refreshAfterChange();showToast('Lead added to backend CRM.')}catch(err){let l={id:Date.now(),...payload,source:'Manual',stage:'New',score:payload.intent==='Hot'?80:payload.intent==='Warm'?55:30,owner:'Aman',next:'First call'};leads.unshift(l);localStorage.setItem('gharpayy_leads',JSON.stringify(leads));closeModal();renderLeads();renderKpis();renderPriority();showToast('Lead added to demo fallback.')}['nName','nPhone','nArea','nBudget'].forEach(id=>$(id).value='')};
+
+async function refreshAfterChange(rerender=true){
+  const [leadData,stats]=await Promise.all([api('/leads'),api('/stats')]);
+  leads=leadData.leads; movementDone=stats.movementDoneToday||movementDone||0; selectedCall=leads.some(l=>l.id===selectedCall)?selectedCall:leads[0]?.id; showBackendStatus(true);
+  if(rerender){renderKpis(stats);renderPriority();renderLeads();renderCallLead();if(document.getElementById('movement').classList.contains('active')) loadMovementCare();}
+}
+
+loadAll();
+loadMovementCare();
+</script></body></html>
